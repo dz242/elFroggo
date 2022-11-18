@@ -1,0 +1,19 @@
+services:
+  web: 
+    build:
+      context: ./app
+      target: builder
+    stop_signal: SIGINT
+    ports:
+      - '8000:8000'
+
+  postgres:
+    container_name: postgres
+    image: postgres:latest
+    environment:
+      - POSTGRES_USER=frogUser
+      - POSTGRES_PASSWORD=frogpass
+      - POSTGRES_DB=frogDB
+    ports:
+      - "5432:5432"
+    restart: always
